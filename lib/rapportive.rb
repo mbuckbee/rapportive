@@ -6,11 +6,11 @@ URL = 'https://profiles.rapportive.com/contacts/email' #/{0}
 module Rapportive
   class Search
     attr_accessor :session_token
-    def initialize
+    def initialize(email)
       url = URL
       request = HTTPI::Request.new
       request.url = STATUS_URL
-      request.query = {:user_email => "fake_#{rand(10000)}@wadus.com"}#Fake email to get token session
+      request.query = {:user_email => email}#Fake email to get token session
       @session_token = JSON.parse(HTTPI.get(request).body)["session_token"]
     end
 
